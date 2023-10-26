@@ -1,0 +1,23 @@
+services:
+  
+  postgres:
+    image: postgres
+    container_name: "postgres"
+    environment:
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: student
+      POSTGRES_DB: postgres_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgres/data
+    restart: unless-stopped
+    networks:
+      - postgres-compose-network
+      
+volumes:
+  postgres:
+
+networks: 
+  postgres-compose-network:
+    driver: bridge
